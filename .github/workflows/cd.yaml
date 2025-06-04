@@ -39,7 +39,7 @@ jobs:
               with:
                   context: .
                   push: true
-                  tags: ${{ secrets.DOCKER_USERNAME }}/seenit:latest
+                  tags: ${{ secrets.DOCKER_USERNAME }}/seenit-tasha:latest
                   build-args: |
                       TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}
 
@@ -51,8 +51,8 @@ jobs:
             - name: Deploy from Docker Hub to Cloud Run
               uses: google-github-actions/deploy-cloudrun@v2
               with:
-                  service: seenit
-                  image: docker.io/${{ secrets.DOCKER_USERNAME }}/seenit:latest
+                  service: seenit-tasha
+                  image: docker.io/${{ secrets.DOCKER_USERNAME }}/seenit-tasha:latest
                   region: ${{ secrets.GCP_REGION }}
                   project_id: ${{ secrets.GCP_PROJECT_ID }}
                   env_vars: TMDB_API_KEY=${{ secrets.TMDB_API_KEY }}
